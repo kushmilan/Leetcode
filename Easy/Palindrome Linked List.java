@@ -40,3 +40,47 @@ class Solution {
         return stack.isEmpty();
     }
 }
+
+
+//-------------------------------------------(Without Extra space)---------------------------------------
+
+class Solution {
+    public boolean isPalindrome(ListNode head) {        
+        ListNode slow = head;
+        ListNode fast = head;                
+        
+        while(fast.next != null && fast.next.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }                
+        
+        slow.next = rev(slow.next);                
+        
+        slow = slow.next;
+        
+        fast = head;
+        
+        while(slow != null){
+            if(fast.val != slow.val) return false;
+            
+            slow = slow.next;
+            fast = fast.next;
+        }
+        
+        return true;
+    }
+    
+    private static ListNode rev(ListNode curr){
+        ListNode prev = null;
+        
+        while(curr != null){
+            ListNode nxt = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nxt;
+        }
+        
+        return prev; 
+    }
+    
+}
