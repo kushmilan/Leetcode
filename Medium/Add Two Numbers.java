@@ -23,8 +23,7 @@ class Solution {
             trev.next = new ListNode(1);
         }
         
-        return res.next;
-        
+        return res.next;        
     }
     
 }
